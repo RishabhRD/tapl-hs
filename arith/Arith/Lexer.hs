@@ -32,12 +32,12 @@ toTokenNumber :: String -> Token
 toTokenNumber "0" = ZeroT
 toTokenNumber _ = InvalidT
 
-toTokenOperator :: String -> Token
+toTokenOperator :: Char -> Token
 toTokenOperator op = case op of
-  "(" -> LParenT
-  ")" -> RParenT
-  "{" -> LBraceT
-  "}" -> RBraceT
+  '(' -> LParenT
+  ')' -> RParenT
+  '{' -> LBraceT
+  '}' -> RBraceT
   _ -> InvalidT
 
 lexStartWithKeyword :: String -> [Token]
@@ -51,9 +51,8 @@ lexStartWithNumber str =
    in (toTokenNumber num) : (lexString rest)
 
 lexStartWithOperator :: String -> [Token]
-lexStartWithOperator str =
-  let (op, rest) = span isOperator str
-   in (toTokenOperator op) : (lexString rest)
+lexStartWithOperator [] = []
+lexStartWithOperator (x : xs) = (toTokenOperator x) : (lexString xs)
 
 lexString :: String -> [Token]
 lexString [] = []

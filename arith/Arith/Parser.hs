@@ -33,8 +33,10 @@ parsePred tokens = do
 parseIsZero :: [Token] -> Maybe (Term, [Token])
 parseIsZero tokens = do
   tokens1 <- consume IsZeroT tokens
-  (term, tokens2) <- parseTerm tokens1
-  return (IsZero term, tokens2)
+  tokens2 <- consume LParenT tokens1
+  (term, tokens3) <- parseTerm tokens2
+  tokens4 <- consume RParenT tokens3
+  return (IsZero term, tokens4)
 
 parseIf :: [Token] -> Maybe (Term, [Token])
 parseIf ts = do
