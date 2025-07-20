@@ -15,3 +15,4 @@ data Token
   | LBraceT
   | RBraceT
   | InvalidT
+  deriving (Show, Eq)

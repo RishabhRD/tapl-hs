@@ -9,7 +9,7 @@ data Term
   | Succ Term
   | Pred Term
   | IsZero Term
-  deriving (Show)
+  deriving (Show, Eq)
 
 -- Returns true if given term is a numeric value.
 isNumeric :: Term -> Bool
