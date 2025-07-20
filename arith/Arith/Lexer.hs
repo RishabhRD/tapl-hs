@@ -1,4 +1,4 @@
-module Arith.Lexer (lexString) where
+module Arith.Lexer (lexString, lexFile) where
 
 import Arith.Token
 import Data.Char
@@ -63,3 +63,8 @@ lexString (x : xs)
   | isOperator x = lexStartWithOperator (x : xs)
   | isDigit x = lexStartWithNumber (x : xs)
   | otherwise = InvalidT : (lexString xs)
+
+lexFile :: FilePath -> IO [Token]
+lexFile path = do
+  contents <- readFile path
+  return (lexString contents)
