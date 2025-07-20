@@ -1,4 +1,4 @@
-module Arith.Syntax (Term, isNumeric, isValue) where
+module Arith.Syntax (Term (..), isNumeric, isValue) where
 
 -- A term in the arith language.
 data Term
